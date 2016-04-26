@@ -1,0 +1,87 @@
+= Disjoint-Set
+
+Es una estructura de datos, que nos permite mantener un conjunto de datos en multiples conjuntos donde los elementos
+no se pueden solapar
+
+Elementos: +
+A, B, C, D, E
+
+Disjoint: +
+Conjunto 1 -> A +
+Conjunto 2 -> B, D +
+Conjunto 3 -> C +
+Conjunto 4 -> E
+
+Esta estructura tiene dos operaciones básicas: +
+find(Element) -> Busca el conjunto que contiene al elemento
+union(Set1, Set2) -> Recibe dos conjuntos y los une
+
+== Notas:
+Al inicializar la estructura cada elemento pertenece a su propio conjunto, luego utilizando las funciones find & union
+vamos modificando la estructura, este tipo de estructura puede ser util cuando aun no se crearon las conexiones entre
+los elementos, generalmente se utiliza para algoritmos asociados con grafos.
+
+== Implementación:
+Una posible implementación puede ser utilizando un array o un hash table, imaginemos el siguiente caso.
+
+Datos: 0, 1, 2, 3, 4, 5, 6, 7, 8
+
+Estos elementos forman los siguientes grupos
+
+Grupo 1 -> 1, 2, 5, 6, 7 +
+Grupo 2 -> 0, 3, 4
+
+
+=== Paso 1 +
+Inicializamos nuestros datos y los guardamos en un array, de esta forma cada elemento queda apuntando a su padre, o sea
+el elemento 0 esta en la posición 0, esto indica que es el root de nuestro conjunto.
+
+Index: [0][1][2][3][4][5][6][7] +
+Valor:  0, 1, 2, 3, 4, 5, 6, 7 +
+
+=== Paso 2 +
+Ejecutamos las siguientes operaciones
+
+val r1 = find(6) // Devuelve 6 ya que es el unico elemento de ese conjunto +
+val r2 = find(7) // Devuelve 7 ya que es el unico elemento de ese conjunto +
+union(r1, r2) +
+
+Luego del "union" los conjuntos que contienen al 6 y al 7 quedan unidos, y esto se realiza diciendo que el elemento 6
+(root actual de este conjunto) apunte a 7
+
+Index: [0][1][2][3][4][5][6][7] +
+Valor:  0, 1, 2, 3, 4, 5, 7, 7
+
+=== Paso 3 +
+Ejecutamos las siguientes operaciones
+
+val r1 = find(6) // Devuelve 7 ya que es el root de este conjunto +
+val r2 = find(2) // Devuelve 2 ya que es el unico elemento de ese conjunto +
+union(r1, r2) +
+
+Luego del "union" los conjuntos que contienen al 6 y al 2 quedan unidos, y esto se realiza diciendo que el elemento 7
+(root actual de este conjunto) apunte a 2
+
+Index: [0][1][2][3][4][5][6][7] +
+Valor:  0, 1, 2, 3, 4, 5, 7, 2
+
+Si continuamos con estos pasos podremos lograr lo siguiente
+
+Index: [0][1][2][3][4][5][6][7] +
+Valor:  4, 2, 2, 3, 3, 2, 7, 2
+
+Grupo 1: +
+
+     2
+   / | \
+  7 5 1
+ /
+6
+
+Grupo 2: +
+
+    3
+   /
+  4
+ /
+0
