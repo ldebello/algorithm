@@ -1,0 +1,13 @@
+= Circular Buffer
+
+Un buffer circular es una estructura la cual permite un comportamiento
+del tipo FIFO (First In - First Out) y tiene la ventaja de que la información
+esta contigua en la memoria ya que esta guardada en un array.
+
+Esta estructura puede tomar distintas estrategias para cuando el buffer esta lleno e intentamos agregar elementos +
+
+- Blocking: Se queda bloqueado esperando un slot libre
+- Resizing: Incrementa el tamaño del buffer y acomoda los elementos de forma correcta
+- Overriding: Sobrescribe los valores que no se consumieron
+- Exception: Arroja una excepción cuando esta lleno
+- Ignore: Ignora el elemento agregado y deja el buffer sin modificación, es responsabilidad de quien usa el buffer verificar esto
