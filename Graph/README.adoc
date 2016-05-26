@@ -26,7 +26,7 @@ Cíclico: Incluye todos los vertices un sola vez, pero el start y el end son el 
 
 Es muy común encontrar grafos donde las conexiones tiene asociadas un valor, este valor es conocido como "weight"
 
-image::http://g.gravizo.com/g?graph%20G%20{%201%20--%204[label="5"];%201%20--%202[label="2"];%202%20--%203[label="14"];%203%20--%205[label="34"];%202%20--%205[label="4"];%202%20--%204[label="5"];%204%20--%205[label="58"];}["Data"]
+image::http://g.gravizo.com/g?graph%20G%20{%201%20--%204[label=%225%22];%201%20--%202[label=%222%22];%202%20--%203[label=%2214%22];%203%20--%205[label=%2234%22];%202%20--%205[label=%224%22];%202%20--%204[label=%225%22];%204%20--%205[label=%2258%22];}["GraphWeight"]
 
 == Connected Components
 
