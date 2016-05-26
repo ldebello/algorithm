@@ -1,0 +1,17 @@
+Esta pagina nos permite crear graficos que luego podemos incluir en nuestros documentos
+
+URL: http://g.gravizo.com
+
+Samples:
+
+- Graph with weight
+http://g.gravizo.com/g?
+graph G {
+	1 -- 4[label="5"];
+	1 -- 2[label="2"];
+	2 -- 3[label="14"];
+	3 -- 5[label="34"];
+	2 -- 5[label="4"];
+	2 -- 4[label="5"];
+	4 -- 5[label="58"];
+}

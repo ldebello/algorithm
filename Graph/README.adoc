@@ -1,0 +1,137 @@
+= Graph
+
+Un grafo es una estructura de datos, que representa los datos y sus conexiones +
+
+Existen dos conjuntos importantes:
+
+* V -> Vertex-Set (Cada vértice o nodo es un elemento del grafo)
+* E -> Edge-Set (Es un elemento del tipo V x V, o sea representa una conexión entre dos vertices)
+
+**Nota:** Si un vértice esta conectado a si mismo, ese edge es llamado "loop" +
+
+Los grafos están divididos en dos grupos:
+
+* Directed: En un grafo dirigido los "edges" llamados "arcs" tienen una dirección o sea de un vértice a otro
+* Undirected: Los "edges" no son dirigidos o sea no hay un sentido en la conexión
+
+== Path
+
+Es una secuencia de vertices donde empezamos desde un "start vertex" hasta un "end vertex", puede ser que el grafo
+sea "simple" o "cíclico"
+
+Simple: Incluye todos los vertices un sola vez
+Cíclico: Incluye todos los vertices un sola vez, pero el start y el end son el mismo
+
+== Weight
+
+Es muy común encontrar grafos donde las conexiones tiene asociadas un valor, este valor es conocido como "weight"
+
+image::http://g.gravizo.com/g?graph%20G%20{%201%20--%204[label="5"];%201%20--%202[label="2"];%202%20--%203[label="14"];%203%20--%205[label="34"];%202%20--%205[label="4"];%202%20--%204[label="5"];%204%20--%205[label="58"];}["Data"]
+
+== Connected Components
+
+En un grafo no dirigido, las connected components son los sub-grafos que se conectan entre si, por ejemplo
+
+1 -> 3 +
+1 -> 4 +
+5 -> 6 +
+
+El grafo definido arriba tiene las siguientes características
+
+V: 1, 3, 4, 5, 6 (O sea 5 vertices o nodos) +
+E: 3 Conexiones +
+Connected Components: 2 (Porque el sub-grafo 1, 3, 4 es un grupo y el 5,6 es otro)
+
+== Implementación
+
+Tenemos dos formas típicas de representar los datos de un grafo Adjacency Matrix o  Adjacency Lists, veamos cada una de ellas
+
+=== Adjacency Matrix
+
+Utilizamos una matrix de NxN donde N es el numero de vertices, donde dos vertices i,j están conectados si X(i,j)=1
+
+Undirected Graph
+|==========
+|0 |1 |2 |3
+|1 |0 |1 |0
+|2 |1 |0 |1
+|3 |0 |1 |0
+|==========
+
+La matriz para un grafo no dirigido es simétrica ya que no hay dirección en la conexión
+
+Directed Graph
+
+Matriz simétrica
+|==========
+|0 |1 |2 |3
+|1 |0 |-1|1
+|2 |1 |0 |0
+|3 |-1|0 |0
+|==========
+
+Matriz no simétrica
+|==========
+|0 |1 |2 |3
+|1 |0 |0 |1
+|2 |1 |0 |0
+|3 |0 |0 |0
+|==========
+
+La matriz para un grafo dirigido, puede ser representada de dos maneras: +
+
+Simétrica: Podemos usar 1 si la conexión es (i,j) o -1 si la conexión (j, i) +
+No Simétrica: El valor es asignado en (i,j) y la conexión es en ese sentido
+
+**Nota:** Para un grafo con peso podemos salvar su peso en la posición (i,j)
+
+=== Adjacency Lists
+
+En este caso cada vértice tiene una lista de los vertices a los cuales esta conectado
+
+== Complexity
+
+En base al tipo de representación que usemos, esto puede tener un impacto en la complejidad de cada operación
+
+=== Adjacency Lists
+
+1. Agregar una conexión: O(1)
+2. Remover una conexión: O(1)
+3. Chequear si dos vertices están conectados: O(1);
+4. Encontrar un path entre dos vertices: O(n^2^);
+
+=== Adjacency Matrix
+
+1. Agregar una conexión: O(log(n));
+2. Remover una conexión: O(log(n));
+3. Chequear si dos vertices están conectados: O(log(n));
+4. Encontrar un path entre dos vertices: O(V+E) – Where E <= V
+
+== Graph Traversals
+
+Dos formas típicas de recorrer un grafo son DFS (Depth First Search) y BFS (Breadth First Search)
+
+=== DFS
+
+Este algoritmo puede ser implementado tanto de forma iterativa como recursiva, la idea primero es ir en profundidad en cada vértice
+
+=== BFS
+
+Este algoritmo suele ser implementado con una queue, donde primero se analiza todos sus vertices y luego va en profundidad en cada uno de ellos,
+esto lo podemos pensar como un recorrido por niveles
+
+=== Comparison
+
+     1
+   / | \
+  2 3 4
+ / \
+5 6
+
+* Iterative DFS: 1, 4, 3, 2, 6, 5
+* Recursive DFS: 1, 2, 5, 6, 3, 4
+* BFS: 1, 2, 3, 4, 5, 6
+
+Dependiendo que version usemos del algoritmo DFS, el orden del recorrido
+puede ser distintos, igual podemos aplicar cierta lógica adicional para obtener
+el mismo orden en ambas versiones
