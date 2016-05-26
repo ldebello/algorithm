@@ -135,3 +135,8 @@ esto lo podemos pensar como un recorrido por niveles
 Dependiendo que version usemos del algoritmo DFS, el orden del recorrido
 puede ser distintos, igual podemos aplicar cierta lógica adicional para obtener
 el mismo orden en ambas versiones
+
+== Forest
+
+Dentro de la teoría de grafo tenemos otro concepto llamado Forest el cual es un conjunto de trees, o sea es un grafo
+donde hay mas de un connected component
