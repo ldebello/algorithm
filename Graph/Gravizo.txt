@@ -1,4 +1,4 @@
-Esta pagina nos permite crear graficos que luego podemos incluir en nuestros documentos
+Esta pagina nos permite crear gráficos que luego podemos incluir en nuestros documentos
 
 URL: http://g.gravizo.com
 

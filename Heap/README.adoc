@@ -1,0 +1,120 @@
+= Heap
+
+Es una estructura de datos de tipo árbol, podemos encontrar distintas clasificaciones en base a las propiedades de
+cada tipo de Heap
+
+== Binary Heap
+
+Los binary heap son un caso particular y sencillo de la estructura de datos Heap, están basados en un árbol binario balanceado,
+el cual tiene algunas restricciones en base a su tipo
+
+=== Max Heap o Min Heap
+
+1. Árbol perfectamente balanceado, excepto por el ultimo nivel, las inserciones se realizan de izquierda a derecha
+2. Cada nodo contiene un valor mayor al de sus hijos (Max Heap) o más pequeño que el de sus hijos (Min Heap)
+
+**Min Heap**
+
+image::http://g.gravizo.com/g?%20graph%20MinHeap%20{%20%20%20%20%201%20--%202;%20%20%20%20%201%20--%203;%20%20%20%20%202%20--%204;%20%20%20%20%202%20--%205;%20%20%20%20%203%20--%206;%20%20%20%20%203%20--%207;%20%20%20%20%204%20--%208;%20%20%20%20%204%20--%209;%20%20%20%20%205%20--%2010;%20%20%20%20%205%20--%2011;%20}["MinHeap"]
+
+**Max Heap**
+
+image::http://g.gravizo.com/g?%20graph%20MaxHeap%20{%20%20%20%20%2011%20--%209;%20%20%20%20%2011%20--%2010;%20%20%20%20%209%20--%205;%20%20%20%20%209%20--%206;%20%20%20%20%2010%20--%207;%20%20%20%20%2010%20--%208;%20%20%20%20%205%20--%201;%20%20%20%20%205%20--%202;%20%20%20%20%206%20--%203;%20%20%20%20%206%20--%204;%20}["MaxHeap"]
+
+==== Implementación
+
+Usualmente encontraremos dos posibles implementaciones ya sea usando un array donde los elementos son insertados
+en el orden que están en cada nivel o una implementación usando punteros donde cada nodo tiene un puntero a su
+padre y a sus dos hijos, generalmente la implementación usando array tiene mejor performance
+
+==== Implementación con array
+Dependiendo si usamos la posición 0 del array la aritmética para el movimiento puede cambiar un poco
+
+**Zero based index**
+
+1. El nodo raíz esta en la posición 0.
+2. Los hijos de un nodo se calculan como "2i+1" y "2i+2"
+3. El nodo padre se calcula como "(i-1) % 2" y tomamos la parte luego de aplicar floor
+
+**One based index**
+
+1. El nodo raíz esta en la posición 1.
+2. Los hijos de un nodo se calculan como "2i" y "2i+1"
+3. El nodo padre se calcula como "i % 2" y tomamos la parte luego de aplicar floor
+
+La altura del árbol se puede calcular como "log~2~((N+1)-1)" y tomamos la parte luego de aplicar ceil
+
+==== Operaciones
+
+Las operaciones básicas son:
+
+1. Insert O(log n): Se inserta el nodo en la ultima posición, y esto generalmente anula las propiedades de ser Max o Min Heap
+entonces se empiezan a intercambiar los elementos para quedar en un estado donde esto se cumpla
+2. Delete O(log n): Se intercambia el nodo a borrar con el ultimo y al quedar en un estado inconsistente se empiezan
+a realizar todos los intercambios para volver a un estado valido
+
+=== Min-Max Heap
+
+Un Min-Max Heap es un árbol binario completo con las siguientes propiedades:
+
+1. Para cualquier nodo X a profundidad **par**, el elemento almacenado en X es menor que el elemento almacenado en el
+nodo padre pero mayor que el almacenado en el nodo abuelo (En caso de que exista)
+2. Para cualquier nodo X a profundidad **impar**, el elemento almacenado en X es mayor que el del nodo padre y menor
+que el del abuelo (En caso de que exista)
+
+image::http://g.gravizo.com/g?graph%20MinMaxHeap%20{%20%20%20%202%20--%2099;%20%20%20%202%20--%2081;%20%20%20%2099%20--%203;%20%20%20%2099%20--%2015;%20%20%20%2081%20--%209;%20%20%20%2081%20--%207;%20%20%20%203%20--%2046;%20%20%20%203%20--%2071;%20%20%20%2015%20--%2072;%20%20%20%2015%20--%2059;%20%20%20%209%20--%2045;%20%20%20%209%20--%2011;%20%20%20%207%20--%2012;%20%20%20%207%20--%2080;%20%20%20%2046%20--%2013;%20%20%20%2046%20--%2043;%20%20%20%2071%20--%2014;%20%20%20%2071%20--%2070;%20%20%20%2072%20--%2023;}["MinMaxHeap"]
+
+==== Implementación
+
+La implementación es similar a la de un Max Heap o Min Heap con la diferencia que dependiendo si el nivel es par o no debemos
+de promover o disminuir el nodo, ambas operaciones se realizan en tiempo O(log n). +
+
+Esta estructura, nos permite encontrar tanto el mayor como el menor elemento del heap en tiempo constante, sin afectar
+la complejidad del algoritmo tras una inserción o eliminación ,se puede ver que el elemento mínimo del heap esta
+en la raíz, y que el elemento maximo es uno de los dos hijos
+
+=== Symmetric Min-Max Heap (SMMH)
+
+Este es una estructura simétrica que utiliza un Min y Max Heap en la misma estructura donde encontramos que el lado izquierdo es un Min Heap y el derecho
+un Max Heap, en el cual se cumplen algunas propiedades:
+
+1. Para cualquier nodo X que tiene un right sibling, el elemento en X es menor o igual que el elemento en el right sibling
+2. Para cualquier nodo X que tenga un nodo abuelo, el elemento izquierdo de su abuelo es menor o igual que el elemento en X
+3. Para cualquier nodo X que tenga un nodo abuelo, el elemento derecho de su abuelo es mayor o igual que el elemento en X
+
+image::http://g.gravizo.com/g?graph%SMMH%20{%20%20%20%20%22%22%20--%204;%20%22%22%20--%2080;%204%20--%208;%204%20--%2060;%2080%20--%206;%2080%20--%2040;%208%20--%2012;%208%20--%2020;%2060%20--%2010;%2060%20--%2016;%206%20--%2014;%206%20--%2030;}["SMMH"]
+
+Las operaciones de inserción y eliminación son similares a las de un Min Heap o Max Heap pero aplicando las reglas mencionadas antes,
+y la complejidad es O(log n)
+
+=== Correspondence property
+
+Esta propiedad dice que si el árbol derecho no esta vació, para cada nodo X en el árbol izquierdo, se define su
+correspondiente nodo Y en el árbol derecho como el nodo en la misma posición de del Max Heap, si este no existiría, el nodo
+Y es el correspondiente nodo del padre de X. El elemento en X sera menor o igual que el elemento en Y +
+
+**Calculo:** +
+a -> Mitad del ancho del nivel del nodo X +
+Si (i + a) existe, si no, es (i + a) / 2 +
+
+==== Inserción - Elemento 2 (Step by Step)
+
+**Step 1**
+Insertamos el elemento A en la ultima posición, ahora verificamos las propiedades y vemos que la propiedad 2 nos se cumple
+
+image::http://g.gravizo.com/g?graph%SMMH%20{%20%20%20%20""%20--%204;%20""%20--%2080;%204%20--%208;%204%20--%2060;%2080%20--%206;%2080%20--%2040;%208%20--%2012;%208%20--%2020;%2060%20--%2010;%2060%20--%2016;%206%20--%2014;%206%20--%2030;%2040%20--%20A;}["Step1"]
+
+**Step 2**
+Movemos el elemento 6 a donde estaba nuestro elemento A, ahora volvemos a verificar las propiedades y la propiedad 2 no se cumple
+
+image::http://g.gravizo.com/g?graph%SMMH%20{%20%20%20%20""%20--%204;%20""%20--%2080;%204%20--%208;%204%20--%2060;%2080%20--%20A;%2080%20--%2040;%208%20--%2012;%208%20--%2020;%2060%20--%2010;%2060%20--%2016;%20A%20--%2014;%20A%20--%2030;%2040%20--%206;}["Step2"]
+
+**Step 3**
+Movemos el elemento 4 a donde estaba nuestro elemento A, volvemos a verificar las propiedades
+
+image::http://g.gravizo.com/g?graph%SMMH%20{%20%20%20%20""%20--%20A;%20""%20--%2080;%20A%20--%208;%20A%20--%2060;%2080%20--%204;%2080%20--%2040;%208%20--%2012;%208%20--%2020;%2060%20--%2010;%2060%20--%2016;%204%20--%2014;%204%20--%2030;%2040%20--%206;}["Step3"]
+
+**Step 4**
+Dado que todas las propiedades se cumplen dejamos el elemento A en esta posición
+
+image::http://g.gravizo.com/g?graph%SMMH%20{%20%20%20%20""%20--%202;%20""%20--%2080;%202%20--%208;%202%20--%2060;%2080%20--%204;%2080%20--%2040;%208%20--%2012;%208%20--%2020;%2060%20--%2010;%2060%20--%2016;%204%20--%2014;%204%20--%2030;%2040%20--%206;}["Step4"]
