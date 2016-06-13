@@ -102,19 +102,11 @@ Si (i + a) existe, si no, es (i + a) / 2 +
 **Step 1**
 Insertamos el elemento A en la ultima posición, ahora verificamos las propiedades y vemos que la propiedad 2 nos se cumple
 
-image::http://g.gravizo.com/g?graph%SMMH%20{%20%20%20%20""%20--%204;%20""%20--%2080;%204%20--%208;%204%20--%2060;%2080%20--%206;%2080%20--%2040;%208%20--%2012;%208%20--%2020;%2060%20--%2010;%2060%20--%2016;%206%20--%2014;%206%20--%2030;%2040%20--%20A;}["Step1"]
-
 **Step 2**
-Movemos el elemento 6 a donde estaba nuestro elemento A, ahora volvemos a verificar las propiedades y la propiedad 2 no se cumple
-
-image::http://g.gravizo.com/g?graph%SMMH%20{%20%20%20%20""%20--%204;%20""%20--%2080;%204%20--%208;%204%20--%2060;%2080%20--%20A;%2080%20--%2040;%208%20--%2012;%208%20--%2020;%2060%20--%2010;%2060%20--%2016;%20A%20--%2014;%20A%20--%2030;%2040%20--%206;}["Step2"]
+Movemos el elemento "6" a donde estaba nuestro elemento A, ahora volvemos a verificar las propiedades y la propiedad 2 no se cumple
 
 **Step 3**
-Movemos el elemento 4 a donde estaba nuestro elemento A, volvemos a verificar las propiedades
-
-image::http://g.gravizo.com/g?graph%SMMH%20{%20%20%20%20""%20--%20A;%20""%20--%2080;%20A%20--%208;%20A%20--%2060;%2080%20--%204;%2080%20--%2040;%208%20--%2012;%208%20--%2020;%2060%20--%2010;%2060%20--%2016;%204%20--%2014;%204%20--%2030;%2040%20--%206;}["Step3"]
+Movemos el elemento "4" a donde estaba nuestro elemento A, volvemos a verificar las propiedades
 
 **Step 4**
-Dado que todas las propiedades se cumplen dejamos el elemento A en esta posición
-
-image::http://g.gravizo.com/g?graph%SMMH%20{%20%20%20%20""%20--%202;%20""%20--%2080;%202%20--%208;%202%20--%2060;%2080%20--%204;%2080%20--%2040;%208%20--%2012;%208%20--%2020;%2060%20--%2010;%2060%20--%2016;%204%20--%2014;%204%20--%2030;%2040%20--%206;}["Step4"]
+Dado que todas las propiedades se cumplen dejamos el elemento A en esta posición y lo reemplazamos por el valor "2"
