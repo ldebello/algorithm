@@ -49,11 +49,11 @@ public class SMMHeap implements Heap {
         heap[to] = tmp;
     }
 
-    private boolean isInMinHeap(int i) {
-        while (i > 3) {
-            i /= 2;
+    private boolean isInMinHeap(int index) {
+        while (index > 3) {
+            index /= 2;
         }
-        return i == 2;
+        return index == 2;
     }
 
     private int parent(int index) {

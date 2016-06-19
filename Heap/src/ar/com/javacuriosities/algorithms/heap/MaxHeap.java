@@ -18,12 +18,7 @@ public class MaxHeap implements Heap {
     public void insert(int element) {
         size++; // Incrementamos el size
         heap[size] = element; // Agregamos el elemento al final del arreglo
-        int currentIndex = size;
-
-        while (heap[currentIndex] > heap[parent(currentIndex)]) {
-            swap(currentIndex, parent(currentIndex));
-            currentIndex = parent(currentIndex);
-        }
+        bubbleUp(size);
     }
 
     @Override
@@ -38,19 +33,26 @@ public class MaxHeap implements Heap {
     public int remove() {
         int maxValue = heap[1]; // Se obtiene el maximo valor
         heap[1] = heap[size--]; // Se asigna el ultimo elemento a la raíz del árbol
-        maxHeapify(1); // Se re-acomoda el árbol para dejarlo en un estado consistente
+        bubbleDown(1); // Se re-acomoda el árbol para dejarlo en un estado consistente
         return maxValue;
     }
 
-    private void maxHeapify(int index) {
+    private void bubbleUp(int currentIndex) {
+        while (heap[currentIndex] > heap[parent(currentIndex)]) {
+            swap(currentIndex, parent(currentIndex));
+            currentIndex = parent(currentIndex);
+        }
+    }
+
+    private void bubbleDown(int index) {
         if (!isLeaf(index)) {
             if (heap[index] < heap[leftChild(index)] || heap[index] < heap[rightChild(index)]) {
                 if (heap[leftChild(index)] > heap[rightChild(index)]) {
                     swap(index, leftChild(index));
-                    maxHeapify(leftChild(index));
+                    bubbleDown(leftChild(index));
                 } else {
                     swap(index, rightChild(index));
-                    maxHeapify(rightChild(index));
+                    bubbleDown(rightChild(index));
                 }
             }
         }

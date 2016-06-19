@@ -18,12 +18,8 @@ public class MinHeap implements Heap {
     public void insert(int element) {
         size++; // Incrementamos el size
         heap[size] = element; // Agregamos el elemento al final del arreglo
-        int currentIndex = size;
+        bubbleUp(size);
 
-        while (heap[currentIndex] < heap[parent(currentIndex)]) {
-            swap(currentIndex, parent(currentIndex));
-            currentIndex = parent(currentIndex);
-        }
     }
 
     @Override
@@ -38,19 +34,26 @@ public class MinHeap implements Heap {
     public int remove() {
         int minValue = heap[1]; // Se obtiene el mínimo valor
         heap[1] = heap[size--]; // Se asigna el ultimo elemento a la raíz del árbol
-        minHeapify(1); // Se re-acomoda el árbol para dejarlo en un estado consistente
+        bubbleDown(1); // Se re-acomoda el árbol para dejarlo en un estado consistente
         return minValue;
     }
 
-    private void minHeapify(int index) {
+    private void bubbleUp(int currentIndex) {
+        while (heap[currentIndex] < heap[parent(currentIndex)]) {
+            swap(currentIndex, parent(currentIndex));
+            currentIndex = parent(currentIndex);
+        }
+    }
+
+    private void bubbleDown(int index) {
         if (!isLeaf(index)) {
             if (heap[index] > heap[leftChild(index)] || heap[index] > heap[rightChild(index)]) {
                 if (heap[leftChild(index)] < heap[rightChild(index)]) {
                     swap(index, leftChild(index));
-                    minHeapify(leftChild(index));
+                    bubbleDown(leftChild(index));
                 } else {
                     swap(index, rightChild(index));
-                    minHeapify(rightChild(index));
+                    bubbleDown(rightChild(index));
                 }
             }
         }
