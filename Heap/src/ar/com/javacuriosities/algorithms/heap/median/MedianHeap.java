@@ -1,4 +1,8 @@
-package ar.com.javacuriosities.algorithms.heap;
+package ar.com.javacuriosities.algorithms.heap.median;
+
+import ar.com.javacuriosities.algorithms.heap.Heap;
+import ar.com.javacuriosities.algorithms.heap.min.MinHeap;
+import ar.com.javacuriosities.algorithms.heap.max.MaxHeap;
 
 public class MedianHeap implements Heap {
 

@@ -1,4 +1,6 @@
-package ar.com.javacuriosities.algorithms.heap;
+package ar.com.javacuriosities.algorithms.heap.min;
+
+import ar.com.javacuriosities.algorithms.heap.Heap;
 
 /*
  * Esta implementación es One-Based index
