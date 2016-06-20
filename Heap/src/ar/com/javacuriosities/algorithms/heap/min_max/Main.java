@@ -8,7 +8,7 @@ import ar.com.javacuriosities.algorithms.heap.smm.SMMHeap;
 
 public class Main {
     public static void main(String[] args) {
-        Heap minMaxHeap = new MinMaxHeap(15);
+        MinMaxHeap minMaxHeap = new MinMaxHeap(15);
 
         minMaxHeap.insert(10);
         minMaxHeap.insert(11);
@@ -23,6 +23,18 @@ public class Main {
         minMaxHeap.insert(2);
 
         System.out.println("MinMax Heap");
+        System.out.println(minMaxHeap);
+
+        System.out.println("Delete Min - MinMax Heap");
+        minMaxHeap.removeMin();
+        System.out.println(minMaxHeap);
+
+        System.out.println("Delete Max - MinMax Heap");
+        minMaxHeap.removeMax();
+        System.out.println(minMaxHeap);
+
+        System.out.println("Delete Min - MinMax Heap");
+        minMaxHeap.removeMin();
         System.out.println(minMaxHeap);
     }
 }

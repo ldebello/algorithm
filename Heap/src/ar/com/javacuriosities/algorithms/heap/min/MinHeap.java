@@ -73,7 +73,7 @@ public class MinHeap implements Heap {
     }
 
     private int leftChild(int index) {
-        return (2 * index);
+        return 2 * index;
     }
 
     private int rightChild(int index) {
