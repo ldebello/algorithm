@@ -1,0 +1,16 @@
+= LRU Cache (Least Recently Used)
+
+Una cache nos permite acceder (Leer/Escribir) datos de una forma eficiente, cuando definimos una cache definimos
+el tamaño de la misma, mientras que haya espacio podemos ir insertando elementos, pero si una inserción fuera ejecutada
+mientras la cache esta completa, esta reemplazaría algún elemento para poder alojar el nuevo, el elemento a reemplazar
+va a depender de la política de eviction (Desalojo).
+
+LRU es una política de eviction, la cual remueve el elemento que hace mas tiempo que no ha sido referenciado.
+
+== Implementación
+
+Una forma típica de implementar esta cache es utilizando dos estructuras de datos (Double Linked List, Hash) para
+asegurar que las lecturas y escrituras sean O(1).
+
+- Hash: Se utiliza para buscar el nodo basando en la Key O(1).
+- Double Linked List: Insertar y remover elementos cuando se obtiene el nodo es siempre O(1).
