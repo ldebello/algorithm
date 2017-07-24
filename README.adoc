@@ -1,1 +1,1 @@
-Este repositorio contiene distintos modulos sobre estructuras de datos, algoritmos o problemas comunes
+Este repositorio contiene distintos modulos sobre estructuras de datos, algoritmos o problemas comunes.

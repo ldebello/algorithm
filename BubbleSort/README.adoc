@@ -1,2 +1,8 @@
 = Bubble Sort
 
+Este algoritmo funciona revisando cada elemento con el siguiente e intercambiándolos de posición si están en el orden equivocado.
+
+- Stable: Yes
+- In Place: Yes
+- Time Complexity: O(n^2)
+- Space Complexity: O(1)
