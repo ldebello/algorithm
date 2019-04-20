@@ -101,3 +101,11 @@ tanto pronto como se detecta que la misma fue modificada (Elemento agregado, mod
 
 * **fail-safe**: Este tipo de iterators actuan
 sobre una copia de la collection y por lo tanto no arrojan ningun tipo de exception. Algunos ejemplos son los iteradores de ConcurrentHashMap y CopyOnWriteArrayList.
+
+=== ¿Diferencia entre margin y padding? +
+
+* Margin: Es el espacio entre el borde y el exterior
+* Padding: Es el espacio entre el borde y el contenido interior
+
+image::images/margin-padding.png[]
+
