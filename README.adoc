@@ -1,1 +1,14 @@
-Este repositorio contiene distintos modulos sobre estructuras de datos, algoritmos o problemas comunes.
+= Miscellaneous
+
+Este repositorio contiene diversos temas
+
+* link:FAQ.adoc[FAQ]
+* link:Algorithms.adoc[Algoritmos]
+* Ordenamientos
+** link:BubbleSort[Bubble Sort]
+* Estructuras de datos
+** link:Heap[Heap]
+** link:Graph[Graph]
+** link:LRUCache[LRU Cache]
+** link:DisjointSet[Disjoint Set]
+** link:CircularBuffer[Circular Buffer]
