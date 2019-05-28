@@ -4,6 +4,7 @@ Este repositorio contiene diversos temas
 
 * link:FAQ.adoc[FAQ]
 * link:Algorithms.adoc[Algoritmos]
+* link:JMeterConcepts.adoc[JMeter Concepts]
 * Ordenamientos
 ** link:BubbleSort[Bubble Sort]
 * Estructuras de datos

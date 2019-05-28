@@ -1,0 +1,69 @@
+= JMeter
+:toc: macro
+:sectnumlevels: 4
+
+A continuacion se explican algunos conceptos que nos pueden ser utiles a la hora de utilizar JMeter.
+
+toc::[]
+== Basic
+
+=== Variables VS Properties
+
+* Variables: Estan definidas dentro de nuestro test plan y se utilizan sintaxis del tipo ${VARIABLE_NAME} (ANT Style), la desventaja es que no puede ser definidas por la linea de comandos.
+* Properties: Se pueden definir por linea de comandos con el parametro -J pero la sintaxis para usarlas es bastante compleja ${__P([PROPERTY_NAME], [DEFAULT_VALUE])}.
+
+*Nota:* Una forma que podemos aprovechar la ventaja de cada una es definiendo variables que son inicializas por properties, entonces de esta forma podemos usar una sintaxis limpia y clara en nuestro test plan y sobreescribir el valor de ellas por medio de properties si fuera necesario. i.e Usar el Config Element "User Defined Variables" y definir las variables de la siguiente forma:
+
+|====
+|Name:|Value|Description
+|ENV|${__P(ENV, devx)}|
+|====
+
+== Thread Group
+* Number of Threads (users): Numero de Threads que ejecutaran mis threads
+* Ramp-Up Period (in seconds): Numero de segundos que llevara crear el numero de hilos. i.e : Threads=100, Ramp-Up=10, eso significa que JMeter creara un thread cada 0,1s (10/100)
+* Loop Count: Cantidad de veces que cada thread ejecutara los tests
+
+== View Results in Table
+* Response Time (Sample Time): Diferencia de tiempo desde justo antes de enviar el request hasta justo despues de terminar de recibir el response
+* Latency: Diferencia de tiempo desde justo antes de enviar el request hasta justo despues de empezar a recibir el response
+* Bytes: Response size en bytes
+* Send Bytes: Request size en bytes
+* Connect Time: Mide el tiempo en establecer la conexion, incluyendo el SSL handshake, este tiempo no es restado de la latencia.
+
+*Nota*: _Response Time=Latency + Processing Time_.Es importante entender que el _Processing Time_ puede estar relacionado con network traffic y/o tiempo de procesamiento.
+
+== View Results Tree
+
+* Load time: Es el response time.
+* Headers size in bytes: Request header size en bytes.
+* Body size in bytes: Request body size en bytes.
+
+== Summary Report
+
+* Label: Nombre asignado al HTTP Sampler el cual se usa para agrupar los requests
+* Samples: Numero de requests.Esto seria igual a Number Of Thread * Loop Count
+* Average (Media): Tiempo promedio de una ejecucion. SUM(Response Time)/Samples
+* Min: El menor tiempo de alguna ejecucion
+* Max: El mayor tiempo de alguna ejecucion
+* Std. Dev.: Indica qué tan dispersos están los datos con respecto a la media. Esta no puede ser negativa, si fuera 0 todos los valores son iguales y mientras mayor sea quiere decir que los valores son mas dispersos.
+* Error%: Porcentaje de request que fallaron agrupados por label.
+* Throughput: Numero de request que son procesados por unidad de tiempo (segundos, minutos, horas) por el server. Esto se empieza a calcular desde el primer request hasta el final del ultimo. Mientras mas grande es este numero mejor.
+* Received KB/sec: Volumen de datos recibidos por unidad tiempo (kilobytes por segundos)
+* Sent KB/sec: Volumen de datos enviados por unidad tiempo (kilobytes por segundos)
+* Avg. Bytes: Promedio total de bytes recibidos. SUM(Response Bytes)/Samples
+
+== Aggregate Report
+
+* Median: Valor del Response Time que divide al grupo en dos partes iguales. Esto es igual al percentil 50
+* 90% Percentil (Line) : Indica que el 90% de los request toma ese tiempo o menos.
+
+== Analisis
+
+|====
+|Caso|Response Time|Throughput|Analisis
+|1|Low|Low|Este caso no deberia ocurrir
+|2|Low|High|Si el tiempo de respuesta es bajo y la carga es alta, esto indica que el server esta trabajando bien. Podemos considerar el test como pasado o podemos incrementar la carga para encontrar el maximo de carga que puede manejar el servidor
+|3|High|Low|Si el tiempo de respuesta es alto y la carga es baja, esto indica que el server no es suficiente, aqui posiblemente debamos hacer algunos ajustes en el servidor
+|4|High|High|Este caso puede ser esperado si el processing time se ve afectado por la carga del servidor, pero podemos considerar otros factores para ajustar la performance de nuestra aplicacion
+|====
