@@ -116,3 +116,8 @@ image::images/margin-padding.png[]
 
 image::images/AuthenticationAndAuthorization.png[]
 
+=== ¿Diferencias entre JWT, JWS, JWE? +
+
+* JWT: Un JWT token puede ser JWS o JWE.
+* JWS: Un JWS es un token firmado digitalmente.
+* JWE: Un JWE es un token encriptado.
