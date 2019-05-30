@@ -71,7 +71,7 @@ y1 <= C <= y2
 x1 <= y2 && y1 <= x2
 ----
 
-*Nota:* Estamos asumiendo que los intervalos están definidos de forma correcta (x1 <= x2 && y1 <= y2)
+*Nota*: Estamos asumiendo que los intervalos están definidos de forma correcta (x1 <= x2 && y1 <= y2)
 
 === ¿Pre-emptive vs Non-preemptive scheduling? +
 
@@ -95,11 +95,11 @@ La principal diferencia entre los iterators
 fail-fast y fail-safe es sobre si la collection puede ser modificada mientra es iterada.
 Los fail-safe permiten esto los fail-fast no.
 
-* **fail-fast**: Este tipo de iterators actuan
+* *fail-fast*: Este tipo de iterators actuan
 sobre la collection directamente, estos fallan
 tanto pronto como se detecta que la misma fue modificada (Elemento agregado, modificado o removido) y se arroja una exception del tipo ConcurrentModificationException. Algunos ejemplos son los iteradores de ArrayList, HashSet y HashMap (La gran mayoria de las collections de JDK1.4 estan implementadas de esta forma).
 
-* **fail-safe**: Este tipo de iterators actuan
+* *fail-safe*: Este tipo de iterators actuan
 sobre una copia de la collection y por lo tanto no arrojan ningun tipo de exception. Algunos ejemplos son los iteradores de ConcurrentHashMap y CopyOnWriteArrayList.
 
 === ¿Diferencia entre margin y padding? +
@@ -108,4 +108,11 @@ sobre una copia de la collection y por lo tanto no arrojan ningun tipo de except
 * Padding: Es el espacio entre el borde y el contenido interior
 
 image::images/margin-padding.png[]
+
+=== ¿Diferencias entre autenticación y autorización? +
+
+* *Autenticación*: Es el proceso por el cual se identifica a un usuario como válido para posteriormente acceder a ciertos recursos definidos.
+* *Autorización*: Es el proceso sobre el cual se establecen que tipos de recursos están permitidos o denegados para cierto usuario o grupo de usuarios concreto.
+
+image::images/AuthenticationAndAuthorization.png[]
 
