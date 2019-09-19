@@ -121,3 +121,21 @@ image::images/AuthenticationAndAuthorization.png[]
 * JWT: Un JWT token puede ser JWS o JWE.
 * JWS: Un JWS es un token firmado digitalmente.
 * JWE: Un JWE es un token encriptado.
+
+=== ¿Como funciona el algoritmo hi/lo? +
+
+El algoritmo hi/lo divide en dos grupos, el "hi" que es asignado de forma sincronica, y cada grupo es dado un numero maximo de "lo" entries, estas pueden ser asignadas de forma off-line sin preocuparse de los duplicados.
+
+n -> Maximo numero de "lo" entries. +
+hi -> Ultimo token
+
+Rango -> [(n * (hi - 1) + 1), (n * hi)]
+
+Ejemplo:
+
+n -> 3
+hi -> 4
+
+
+Rango -> [(3 * (4 - 1) + 1), (3 * 4)]
+Rango -> [10, 12]
