@@ -140,7 +140,7 @@ hi -> 4
 Rango -> [(3 * (4 - 1) + 1), (3 * 4)]
 Rango -> [10, 12]
 
-=== Data races and Race condition +
+=== Data race and Race condition +
 
 * Data race
 ** Dos o mas threads accediendo de manera concurrente a la misma variable
