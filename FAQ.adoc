@@ -148,3 +148,13 @@ Rango -> [10, 12]
 ** Al menos uno de ellos no esta sincronizado
 
 * Race condition: Es la situacion donde el resultado de la operacion no es determinado ya que depende del orden que se ejecuten las operaciones.
+
+=== PostgreSQL - Instance vs Database vs Catalog vs Schema +
+
+* Server Instance: Multiples databases manejadas por el mismo execution engine.
+
+* Database: Una base de datos de nuestro servidor.
+
+* Catalog: Forma parte de una base de datos y tiene metadata sobre la misma.
+
+* Schema: Un namespace dentro de nuestra base de datos.
